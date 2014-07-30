@@ -1,0 +1,9 @@
+0.3 - 30-July-2014
+    Added TinyDNS::Reader::Merged
+
+0.2 - 03-July-2014
+	Bump version for public release.
+	Added dump-zone utility script.
+
+0.1 - 19-June-2014
+	- Initial version of code

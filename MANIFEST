@@ -1,0 +1,14 @@
+lib/TinyDNS/Reader.pm
+lib/TinyDNS/Reader/Merged.pm
+lib/TinyDNS/Record.pm
+ChangeLog
+LICENSE
+Makefile.PL
+dump-zones
+dump-zones-merged
+MANIFEST
+README.md
+META.yml
+t/00-load.t
+t/10-test-strict.t
+t/20-dns-records.t
