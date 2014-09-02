@@ -1,12 +1,11 @@
 TinyDNS::Reader
 ===============
 
-This repository contains the source for the perl module `TinyDNS::Reader` and
-`TinyDNS::Record`.
+This repository contains the source for the perl module `TinyDNS::Reader`, `TinyDNS::Reader::Merged`, and `TinyDNS::Record`
 
-They allow the reading and parsing of tinydns data-files, like so:
+Together the three modules allow the reading and parsing of tinydns data-files, like so:
 
-    my $reader = TinyDNS::Reader->new( file => "zones/steve.co" );
+    my $reader  = TinyDNS::Reader->new( file => "zones/steve.co" );
     my $records = $reader->parse();
 
     foreach my $record ( @$records )
@@ -16,31 +15,30 @@ They allow the reading and parsing of tinydns data-files, like so:
 
 Further details are available in the test-cases, or the POD.
 
-Notes
------
 
-This module was put together for the [Git-based DNS hosting service](https://dns-api.com/), and
-shouldn't be uploaded to CPAN, and indeed I did not do so, because the name
-implies it can parse real/genuine/complete TinyDNS records,
-however that is not the case:
+Compatibility Notes
+-------------------
+
+This module was put together for the [Git-based DNS hosting service](https://dns-api.com/), and it wasn't initially planned to be added to CPAN, because the name implies it can parse real/genuine/complete TinyDNS records, however that is not the case:
 
 * We ignore SOA records.
 * We ignore NS records.
 * Our TXT record (which should have a `:`-prefix) is non-standard/weird.
-   * We use `T:name:value[:ttl]` instead.  Which is cleaner.
+       * We use `T:name:value[:ttl]` instead.  Which is cleaner.
+
+That said there is actually no module available on CPAN for _reading_ TinyDNS files, just for generating them, so despite the compatibility niggles I've uploaded it regardless.
 
 
 Utility Script
 --------------
 
-Contained within the distribution is a simple `dump-zones` script,
-which will allow you to see how a file would be parsed by the 
-[DNS-hosting service](https://dns-api.com/).
+Contained within the distribution is a simple `dump-zones` script, which will allow you to see how a file would be parsed by the [DNS-hosting service](https://dns-api.com/).
 
-Usage:
+Usage is as simple as:
 
     ./dump-records file1 file2 .. fileN
 
+The companion script uses the merged-version of the `TinyDNS::Reader` which collapses multiple records with the same name into array-versions of the results.  It is probably the module you should prefer.
 
 
 Steve

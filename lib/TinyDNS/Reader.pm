@@ -43,7 +43,7 @@ package TinyDNS::Reader;
 
 use TinyDNS::Record;
 
-our $VERSION='0.3';
+our $VERSION = '0.5';
 
 
 =begin doc
@@ -72,7 +72,7 @@ sub new
     }
     else
     {
-        die "Missing 'data' or 'file' argument.";
+        die "Missing 'text' or 'file' argument.";
     }
 
     return $self;
@@ -142,7 +142,7 @@ sub parse
         #  Construct a new object, and add it to the list.
         #
         my $rec = TinyDNS::Record->new($line);
-        push( @$records, $rec ) if ( $rec );
+        push( @$records, $rec ) if ($rec);
     }
 
     return ($records);

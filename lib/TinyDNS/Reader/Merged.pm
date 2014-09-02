@@ -101,8 +101,18 @@ sub new
     #
     #  Create our child object.
     #
-    die "No file" unless ( $supplied{ 'file' } );
-    $self->{ 'obj' } = TinyDNS::Reader->new( file => $supplied{ 'file' } );
+    if ( $supplied{ 'file' } )
+    {
+        $self->{ 'obj' } = TinyDNS::Reader->new( file => $supplied{ 'file' } );
+    }
+    elsif ( $supplied{ 'text' } )
+    {
+        $self->{ 'obj' } = TinyDNS::Reader->new( text => $supplied{ 'text' } );
+    }
+    else
+    {
+        die "Missing 'text' or 'file' argument";
+    }
     return $self;
 }
 
@@ -130,7 +140,7 @@ sub parse
     #
     my $res;
 
-    my %seen;
+    my %seen = ();
 
     foreach my $r (@$records)
     {
@@ -138,10 +148,10 @@ sub parse
         my $type = $r->type();
         my $val  = $r->value();
         my $ttl  = $r->ttl();
+        my $hash = $r->hash();
 
         # skip if we've seen this name+type pair before.
         next if ( $seen{ $name }{ $type } );
-
 
         #
         #  Look for other values with the same type.
@@ -153,6 +163,9 @@ sub parse
             my $name2 = $x->name();
             my $type2 = $x->type();
             my $val2  = $x->value();
+            my $hash2 = $x->hash();
+
+            next if ( $hash eq $hash2 );
 
             #
             #  If this record has the same name/type as the

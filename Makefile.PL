@@ -15,7 +15,7 @@ WriteMakefile(
     PREREQ_PM    => \%prereq_pm,
     ABSTRACT     => 'Parser for TinyDNS records.',
     AUTHOR       => 'Steve Kemp <steve@steve.org.uk>',
-
+    LICENSE      => 'perl_5',
 
     META_MERGE => {
         resources => {
@@ -27,3 +27,12 @@ WriteMakefile(
                   },
              );
 
+
+package MY;
+
+sub metafile {
+        my $self    = shift;
+        my $meta    = $self->SUPER::metafile_target(@_);
+        my ($extra) = $self->echo('license: perl_5', 'MYMETA.yml', 1);
+        return "$meta\t$extra\n";
+}

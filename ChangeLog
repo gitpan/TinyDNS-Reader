@@ -1,9 +1,17 @@
-0.3 - 30-July-2014
-    Added TinyDNS::Reader::Merged
 
-0.2 - 03-July-2014
+0.5 - 2nd September 2014
+	Attempt to generate a correct META.yml file for the release.
+
+0.4 - 30th July 2014
+	Fixed the merge-reader to allow both text/file constructor.
+	Fixed to allow multiple records to be unqiue.
+
+0.3 - 30th July 2014
+        Added TinyDNS::Reader::Merged
+
+0.2 - 3rd July 2014
 	Bump version for public release.
 	Added dump-zone utility script.
 
-0.1 - 19-June-2014
-	- Initial version of code
+0.1 - 19th June 2014
+	Initial version of code

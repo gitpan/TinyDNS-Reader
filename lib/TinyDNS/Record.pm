@@ -64,7 +64,7 @@ use Carp;
 #
 #  Allow our object to treated as a string.
 #
-use overload'""' => 'stringify';
+use overload '""' => 'stringify';
 
 
 
@@ -111,6 +111,7 @@ sub new
     #
     if ( ( $rec eq '+' ) || ( $rec eq '=' ) )
     {
+
         # name : ipv4 : ttl
         $self->{ 'type' }  = "A";
         $self->{ 'name' }  = $data[0];
@@ -119,10 +120,11 @@ sub new
     }
     elsif ( $rec eq '6' )
     {
+
         # name : ipv6 : ttl
-        $self->{ 'type' }  = "AAAA";
-        $self->{ 'name' }  = $data[0];
-        $self->{ 'ttl' } = $data[2] || 300;
+        $self->{ 'type' } = "AAAA";
+        $self->{ 'name' } = $data[0];
+        $self->{ 'ttl' }  = $data[2] || 300;
 
         #
         #  Convert an IPv6 record of the form:
@@ -131,11 +133,12 @@ sub new
         #     "2001:41c8:010b:0101:0000:0000:0000:0010".
         #
         my $ipv6 = $data[1];
-        my @tmp  = ( $ipv6 =~ m/..../g );
-        $self->{'value'} = join( ":", @tmp );
+        my @tmp = ( $ipv6 =~ m/..../g );
+        $self->{ 'value' } = join( ":", @tmp );
     }
     elsif ( $rec eq '@' )
     {
+
         #
         # @xxx:name:ttl
         # @xxx:[ip]:name:ttl
@@ -143,22 +146,23 @@ sub new
         if ( scalar(@data) == 4 )
         {
             $self->{ 'type' }     = "MX";
-            $self->{'name'} = $data[0];
+            $self->{ 'name' }     = $data[0];
             $self->{ 'priority' } = $data[3] || "15";
             $self->{ 'ttl' }      = $data[4] || 300;
-            $self->{ 'value' }    = $self->{'priority'} . " " . $data[2];
+            $self->{ 'value' }    = $self->{ 'priority' } . " " . $data[2];
         }
         if ( scalar(@data) == 3 )
         {
             $self->{ 'type' }     = "MX";
-            $self->{'name'} = $data[0];
+            $self->{ 'name' }     = $data[0];
             $self->{ 'priority' } = $data[2] || "15";
             $self->{ 'ttl' }      = $data[3] || 300;
-            $self->{ 'value' }    = $self->{'priority'} . " " . $data[1];
+            $self->{ 'value' }    = $self->{ 'priority' } . " " . $data[1];
         }
     }
     elsif ( ( $rec eq 'c' ) || ( $rec eq 'C' ) )
     {
+
         #
         # name :  dest : [ttl]
         #
@@ -169,15 +173,16 @@ sub new
     }
     elsif ( ( $rec eq 't' ) || ( $rec eq 'T' ) )
     {
+
         #
         # name : "data " : [TTL]
         #
         if ( $line =~ /([^:]+):"([^"]+)":([0-9]+)$/ )
         {
-            $self->{'type'} = "TXT";
-            $self->{'name'} = $1;
-            $self->{'value'} ="\"$2\"";
-            $self->{'ttl'} =$3;
+            $self->{ 'type' }  = "TXT";
+            $self->{ 'name' }  = $1;
+            $self->{ 'value' } = "\"$2\"";
+            $self->{ 'ttl' }   = $3;
         }
         else
         {
@@ -186,10 +191,11 @@ sub new
     }
     elsif ( $rec eq '^' )
     {
+
         #
         #  ptr : "rdns " : [TTL]
         #
-        $self->{'type'} = "PTR";
+        $self->{ 'type' }  = "PTR";
         $self->{ 'name' }  = $data[0];
         $self->{ 'value' } = $data[1];
         $self->{ 'ttl' }   = $data[2] || 300;
@@ -332,5 +338,17 @@ sub stringify
 
 }
 
+sub hash
+{
+    my ($self) = (@_);
+
+    my $hash;
+    $hash .= $self->type();
+    $hash .= $self->name();
+    $hash .= $self->value();
+    $hash .= $self->ttl();
+
+    return ($hash);
+}
 
 1;
