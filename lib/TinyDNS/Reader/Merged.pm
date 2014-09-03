@@ -1,7 +1,7 @@
 
 =head1 NAME
 
-TinyDNS::Reader::Merger - Read a TinyDNS file and merge records.
+TinyDNS::Reader::Merged - Read a TinyDNS file and merge records.
 
 =head1 DESCRIPTION
 

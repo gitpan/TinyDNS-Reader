@@ -4,9 +4,9 @@ use strict;
 use ExtUtils::MakeMaker;
 
 my %prereq_pm = ( # solely for the test-suite.
-                  'Test::More'       => undef,
-                  'Test::Pod'        => undef,
-                  'Test::NoTabs'     => undef,
+                  'Test::More'       => 0,
+                  'Test::Pod'        => 0,
+                  'Test::NoTabs'     => 0,
                 );
 
 WriteMakefile(
