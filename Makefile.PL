@@ -6,6 +6,7 @@ use ExtUtils::MakeMaker;
 my %prereq_pm = ( # solely for the test-suite.
                   'Test::More'       => 0,
                   'Test::Pod'        => 0,
+                  'Test::Strict'     => 0,
                   'Test::NoTabs'     => 0,
                 );
 
@@ -15,7 +16,7 @@ WriteMakefile(
     PREREQ_PM    => \%prereq_pm,
     ABSTRACT     => 'Parser for TinyDNS records.',
     AUTHOR       => 'Steve Kemp <steve@steve.org.uk>',
-    LICENSE      => 'perl_5',
+    LICENSE      => 'perl',
 
     META_MERGE => {
         resources => {

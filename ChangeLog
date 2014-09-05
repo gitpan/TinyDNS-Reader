@@ -1,4 +1,7 @@
 
+0.7 - 5th September 2014
+	Added missing dependency on Test::Strict.
+
 0.6 - 3rd September 2014
 	Attempt to generate a correct META.yml file for the release.
 
