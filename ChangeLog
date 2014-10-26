@@ -1,4 +1,7 @@
 
+0.7.1 - 26th October 2014
+	Rework the dependencies and MakeMaker configuration
+
 0.7 - 5th September 2014
 	Added missing dependency on Test::Strict.
 

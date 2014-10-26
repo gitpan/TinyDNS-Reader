@@ -83,8 +83,9 @@ use warnings;
 
 Constructor.
 
-This module expects to be given a file parameter, pointing to a
-file which can be parsed.
+This module expects to be given a C<file> parameter, pointing to a
+file which can be parsed, or a C<text> parameter containing the text of the
+records to parse.
 
 =end doc
 

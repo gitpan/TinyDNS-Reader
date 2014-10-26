@@ -43,12 +43,13 @@ package TinyDNS::Reader;
 
 use TinyDNS::Record;
 
-our $VERSION = '0.7';
+our $VERSION = '0.7.1';
 
 
 =begin doc
 
-Constructor.  We should be given either a "file" or "text" parameter.
+The constructor should be given either a "C<file>" or "C<text>" parameter,
+containing the filename to parse, or the text to parse, respectively.
 
 =end doc
 

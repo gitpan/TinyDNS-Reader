@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               TinyDNS-Reader
-version:            0.7
+version:            0.7.1
 abstract:           Parser for TinyDNS records.
 author:
     - Steve Kemp <steve@steve.org.uk>
@@ -9,12 +9,12 @@ distribution_type:  module
 configure_requires:
     ExtUtils::MakeMaker:  0
 build_requires:
-    ExtUtils::MakeMaker:  0
-requires:
     Test::More:    0
     Test::NoTabs:  0
     Test::Pod:     0
     Test::Strict:  0
+requires:
+    perl:  5.008
 resources:
     bugtracker:  https://github.com/skx/TinyDNS--Reader/issues
     homepage:    https://github.com/skx/TinyDNS--Reader/
