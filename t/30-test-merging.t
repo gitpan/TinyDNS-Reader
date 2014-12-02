@@ -109,7 +109,7 @@ is( scalar(@$val), 2,       "We found two values" );
 #
 # Test the array has the correct types.
 #
-my $val = $all[0]->{ 'value' };
+$val = $all[0]->{ 'value' };
 is( $val->[0], "1.2.3.4", "Got the right value" );
 is( $val->[1], "1.2.3.5", "Got the right value" );
 

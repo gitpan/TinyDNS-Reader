@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               TinyDNS-Reader
-version:            0.7.1
+version:            0.7.2
 abstract:           Parser for TinyDNS records.
 author:
     - Steve Kemp <steve@steve.org.uk>

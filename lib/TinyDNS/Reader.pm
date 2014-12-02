@@ -10,31 +10,34 @@ taken from one.
 
 =cut
 
-=head1 AUTHOR
+=head1 SYNOPSIS
 
-Steve Kemp <steve@steve.org.uk>
+   use TinyDNS::Reader;
+
+   my $tmp = TinyDNS::Reader->new( file => "./zones/example.com" );
+   my $dns = $tmp->parse();
+
+   foreach my $record ( @$dns )
+   {
+      print $record . "\n";
+   }
+
+
+=head1 DESCRIPTION
+
+This module contains code for reading a zone-file which has been
+created for use with L<DJB's tinydns|http://cr.yp.to/djbdns/tinydns.html>.
+
+A zonefile may be parsed and turned into a series of L<TinyDNS::Record> objects,
+one for each valid record which is found.
+
+If you wish to merge multiple records, referring to the same hostname, you should also consult the documentation for the L<TinyeDNS::Reader::Merged> module.
 
 =cut
 
-=head1 COPYRIGHT AND LICENSE
-
-Copyright (C) 2014 Steve Kemp <steve@steve.org.uk>.
-
-This code was developed for an online Git-based DNS hosting solution,
-which can be found at:
-
-=over 8
-
-=item *
-https://dns-api.com/
-
-=back
-
-This library is free software. You can modify and or distribute it under
-the same terms as Perl itself.
+=head1 METHODS
 
 =cut
-
 
 use strict;
 use warnings;
@@ -43,15 +46,14 @@ package TinyDNS::Reader;
 
 use TinyDNS::Record;
 
-our $VERSION = '0.7.1';
+our $VERSION = '0.7.2';
 
 
-=begin doc
+
+=head2 new
 
 The constructor should be given either a "C<file>" or "C<text>" parameter,
 containing the filename to parse, or the text to parse, respectively.
-
-=end doc
 
 =cut
 
@@ -110,11 +112,10 @@ sub _readFile
 }
 
 
-=begin doc
+=head2 parse
 
-Process and return an array of L<TinyDNS::Records> from the data.
-
-=end doc
+Process and return an array of L<TinyDNS::Records> from the data contained
+in the file specified by our constructor, or the scalar reference.
 
 =cut
 
@@ -151,3 +152,29 @@ sub parse
 
 
 1;
+
+
+=head1 AUTHOR
+
+Steve Kemp <steve@steve.org.uk>
+
+=cut
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright (C) 2014 Steve Kemp <steve@steve.org.uk>.
+
+This code was developed for an online Git-based DNS hosting solution,
+which can be found at:
+
+=over 8
+
+=item *
+https://dns-api.com/
+
+=back
+
+This library is free software. You can modify and or distribute it under
+the same terms as Perl itself.
+
+=cut

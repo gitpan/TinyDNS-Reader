@@ -44,7 +44,7 @@ sub getObj
 
 
 #
-# Traditional MX..
+# Traditional MX.
 #
 my @all = getObj("\@edinburgh.io::mail.steve.org.uk:15");
 is( scalar(@all),         1,                      "One record" );
@@ -61,6 +61,16 @@ is( scalar(@all),         1,                      "One record" );
 is( $all[0]->{ 'type' },  "MX",                   "Got the right type" );
 is( $all[0]->{ 'name' },  "edinburgh.io",         "Got the right name" );
 is( $all[0]->{ 'value' }, "15 mail.steve.org.uk", "Got the right value" );
+
+
+#
+#  NS record
+#
+@all = getObj("&sub.edinburgh.io::ns.example.com:300");
+is( scalar(@all),         1,                  "One record" );
+is( $all[0]->{ 'type' },  "NS",               "Got the right type" );
+is( $all[0]->{ 'name' },  "sub.edinburgh.io", "Got the right name" );
+is( $all[0]->{ 'value' }, "ns.example.com",   "Got the right value" );
 
 
 #
@@ -259,3 +269,5 @@ Cexample.edinburgh.io:example.com:300
 #
 ^46.85.68.80.in-addr.arpa:ssh.steve.org.uk
 ^47.85.68.80.in-addr.arpa:mail.steve.org.uk:300
+
+&sub.steve.org.uk::ns1.example.com:300

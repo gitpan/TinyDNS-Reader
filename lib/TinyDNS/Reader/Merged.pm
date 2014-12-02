@@ -45,28 +45,8 @@ Use it as a drop-in replacing for L<TinyDNS::Reader>.
 
 =cut
 
-=head1 AUTHOR
 
-Steve Kemp <steve@steve.org.uk>
-
-=cut
-
-=head1 COPYRIGHT AND LICENSE
-
-Copyright (C) 2014 Steve Kemp <steve@steve.org.uk>.
-
-This code was developed for an online Git-based DNS hosting solution,
-which can be found at:
-
-=over 8
-
-=item *
-https://dns-api.com/
-
-=back
-
-This library is free software. You can modify and or distribute it under
-the same terms as Perl itself.
+=head2 METHODS
 
 =cut
 
@@ -79,15 +59,13 @@ use strict;
 use warnings;
 
 
-=begin doc
+=head2 new
 
 Constructor.
 
 This module expects to be given a C<file> parameter, pointing to a
 file which can be parsed, or a C<text> parameter containing the text of the
 records to parse.
-
-=end doc
 
 =cut
 
@@ -118,14 +96,12 @@ sub new
 }
 
 
-=begin doc
+=head2 parse
 
 Parse the records and return a merged set.
 
 The parsing is delegated to L<TinyDNS::Reader>, so all supported record-types
 work as expected.
-
-=end doc
 
 =cut
 
@@ -203,3 +179,29 @@ sub parse
 }
 
 1;
+
+
+=head1 AUTHOR
+
+Steve Kemp <steve@steve.org.uk>
+
+=cut
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright (C) 2014 Steve Kemp <steve@steve.org.uk>.
+
+This code was developed for an online Git-based DNS hosting solution,
+which can be found at:
+
+=over 8
+
+=item *
+https://dns-api.com/
+
+=back
+
+This library is free software. You can modify and or distribute it under
+the same terms as Perl itself.
+
+=cut
